@@ -1,16 +1,24 @@
-﻿__pycache__/
+﻿# .gitignore — ditulis SEBELUM git add yang pertama
+__pycache__/
 *.pyc
 .venv/
+.conda/
 .pytest_cache/
 .ipynb_checkpoints/
 .DS_Store
 Thumbs.db
 
-# Data besar dan artefak model TIDAK masuk Git
+# Data besar dan artefak TIDAK masuk Git — dikelola DVC sejak Praktikum 3
 data/raw/*.csv
 data/processed/
 artifacts/
+artifacts_*/
 laporan/
 mlruns/
+
+# Kredensial — tidak pernah, dalam keadaan apa pun
+.env
+*.pem
+*.key
 
 !data/raw/.gitkeep
