@@ -1,0 +1,16 @@
+﻿__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Data besar dan artefak model TIDAK masuk Git
+data/raw/*.csv
+data/processed/
+artifacts/
+laporan/
+mlruns/
+
+!data/raw/.gitkeep
