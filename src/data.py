@@ -1,4 +1,4 @@
-# src/data.py — pemuatan, validasi skema & domain kredit, dan pembagian menurut waktu
+﻿# src/data.py — pemuatan, validasi skema & domain kredit, dan pembagian menurut waktu
 import pandas as pd
 
 SKEMA = {
