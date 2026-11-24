@@ -41,8 +41,6 @@ NILAI_POSITIF = ("penghasilan_bulanan", "plafon_diajukan", "angsuran_bulanan")
 KATEGORI_SAH = {
     "segmen": {"wiraswasta", "petani", "pegawai_tetap", "nelayan", "pedagang_musiman"},
     "status_restrukturisasi": {"ya"},
-},
-    "status_restrukturisasi": {"Tidak", "Pernah", "Sedang"},
 }
 
 
