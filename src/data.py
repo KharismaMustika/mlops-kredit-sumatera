@@ -1,4 +1,4 @@
-# src/data.py — pemuatan, validasi skema, dan pembagian menurut waktu
+# src/data.py — pemuatan, validasi skema & domain kredit, dan pembagian menurut waktu
 import pandas as pd
 
 SKEMA = {
@@ -36,6 +36,13 @@ MAKS_HILANG = {
     "lama_usaha_tahun": 0.10,
 }
 
+NILAI_POSITIF = ("penghasilan_bulanan", "plafon_diajukan", "angsuran_bulanan")
+
+KATEGORI_SAH = {
+    "segmen": {"Mikro", "Kecil", "Ultra Mikro"},
+    "status_restrukturisasi": {"Tidak", "Pernah", "Sedang"},
+}
+
 
 def muat(jalur: str) -> pd.DataFrame:
     return pd.read_csv(jalur)
@@ -57,6 +64,21 @@ def validasi(df: pd.DataFrame) -> list[str]:
     for kolom, maks in MAKS_HILANG.items():
         if kolom in df and df[kolom].isna().mean() > maks:
             masalah.append(f"{kolom}: nilai hilang melampaui batas {maks:.0%}")
+
+    # Aturan tambahan 1: nominal finansial inti wajib bernilai positif (> 0)
+    for kolom in NILAI_POSITIF:
+        if kolom in df:
+            non_positif = (df[kolom] <= 0).sum()
+            if non_positif:
+                masalah.append(f"{kolom}: {non_positif} nilai tidak positif (<= 0)")
+
+    # Aturan tambahan 2: nilai kolom kategorikal harus sesuai daftar domain sah
+    for kolom, daftar_sah in KATEGORI_SAH.items():
+        if kolom in df:
+            tak_sah = (~df[kolom].dropna().isin(daftar_sah)).sum()
+            if tak_sah:
+                masalah.append(f"{kolom}: {tak_sah} nilai kategori di luar domain sah")
+
     return masalah
 
 
