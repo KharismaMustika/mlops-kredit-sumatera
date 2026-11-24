@@ -1,0 +1,5 @@
+outs:
+- md5: 03926bd0c6fb9f84df93a5fa002d8276
+  size: 4364195
+  hash: md5
+  path: kredit_sumatera.csv
